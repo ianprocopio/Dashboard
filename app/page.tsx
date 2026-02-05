@@ -52,7 +52,7 @@ export default function Login() {
           {/* Botão Corrigido: Altura fixa manda, py removido, flex adicionado */}
           <button 
             type="submit"
-            className="w-full mt-8 bg-emerald-600 hover:bg-emerald-700 text-white font-black py-[50px] rounded-2xl shadow-lg shadow-emerald-200 transition-all duration-300 active:scale-[0.97] uppercase text-sm tracking-widest flex items-center justify-center"
+            className="w-full mt-8 bg-emerald-600 hover:bg-emerald-700 text-white font-black py-[20px] rounded-2xl shadow-lg shadow-emerald-200 transition-all duration-300 active:scale-[0.97] uppercase text-sm tracking-widest flex items-center justify-center"
           >
             Acessar Dashboard
           </button>

@@ -33,8 +33,8 @@ export default function ForgotPassword() {
               <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">E-mail</label>
               <input 
                 type="email" 
-                placeholder="seu@email.com"
-                className="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl text-slate-900 outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm"
+                placeholder="Digite seu e-mail"
+                className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl text-slate-900 outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
