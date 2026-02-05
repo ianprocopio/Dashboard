@@ -1,15 +1,22 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/dist/client/link';
+import Link from 'next/link';
 
-export default function Login() {
+export default function Register() {
   const router = useRouter();
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const handleLogin = (e: React.FormEvent) => {
+  // FUNÇÃO CORRIGIDA: Única e sem repetições
+  const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Salva o nome no navegador antes de mudar de página
+    localStorage.setItem('usuario_nome', nome); 
+    
+    // Agora sim, redireciona para o dashboard
     router.push('/dashboard'); 
   };
 
@@ -24,7 +31,19 @@ export default function Login() {
           </p>
         </header>
 
-        <form className="space-y-4" onSubmit={handleLogin}>
+        <form className="space-y-4" onSubmit={handleRegister}>
+          <div className="space-y-1">
+            <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">Nome Completo</label>
+            <input 
+              type="text" 
+              placeholder="Como quer ser chamado?"
+              className="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl text-slate-900 outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              required
+            />
+          </div>
+
           <div className="space-y-1">
             <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">E-mail</label>
             <input 
@@ -41,7 +60,7 @@ export default function Login() {
             <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">Senha</label>
             <input 
               type="password" 
-              placeholder="Digite sua senha"
+              placeholder="Crie sua senha"
               className="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl text-slate-900 outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
@@ -49,26 +68,21 @@ export default function Login() {
             />
           </div>
 
-          {/* Botão Corrigido: Altura fixa manda, py removido, flex adicionado */}
           <button 
             type="submit"
-            className="w-full mt-8 bg-emerald-600 hover:bg-emerald-700 text-white font-black py-[50px] rounded-2xl shadow-lg shadow-emerald-200 transition-all duration-300 active:scale-[0.97] uppercase text-sm tracking-widest flex items-center justify-center"
+            className="w-full mt-8 bg-emerald-600 hover:bg-emerald-700 text-white font-black py-[20px] rounded-2xl shadow-lg shadow-emerald-200 transition-all duration-300 active:scale-[0.97] uppercase text-sm tracking-widest flex items-center justify-center"
           >
-            Acessar Dashboard
+            Criar Minha Conta
           </button>
         </form>
 
-        <footer className="mt-8 text-center border-t border-slate-50 pt-4 flex flex-col gap-3">
-          <Link 
-            href="/register" 
-            className="text-[10px] font-bold text-emerald-600 hover:text-emerald-700 uppercase tracking-wider transition-all duration-300"
-          >
-            Não tem conta? Criar conta agora
-          </Link>
-
-          <button className="text-[10px] font-bold text-slate-400 hover:text-emerald-600 uppercase tracking-wider transition-colors duration-300">
-           <Link href="/forgot-password">Esqueceu a senha?</Link> Solicite ao suporte
-          </button>
+        <footer className="mt-8 text-center border-t border-slate-50 pt-4">
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            Já tem conta?{' '}
+            <Link href="/" className="text-emerald-600 hover:text-emerald-700 hover:underline transition-all duration-300">
+              Faça Login aqui
+            </Link>
+          </p>
         </footer>
       </div>
     </div>
